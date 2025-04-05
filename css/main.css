@@ -34,3 +34,9 @@ body {
 	max-width: 900px;
 	background-color:transparent;
 }
+
+.three-renderer {
+	position: fixed;
+	width: 100% !important;
+	height: 100% !important;
+}
