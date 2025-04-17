@@ -24,7 +24,7 @@ body {
 }
 
 #main-container {
-	position: absolute;
+	position: relative;
 	margin-inline: auto;
 	top: 0;
 	left: 0;
@@ -37,6 +37,58 @@ body {
 
 .three-renderer {
 	position: fixed;
+	top: 0;
+	left: 0;
 	width: 100% !important;
 	height: 100% !important;
+	z-index: -1;
+}
+
+a {
+  color: #1e90ff;
+  text-decoration: none;
+}
+
+header {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  color: #ffffff;
+}
+
+nav a {
+  margin-left: 1.5rem;
+  color: #aaa;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #fff;
+}
+
+main {
+  padding: 2rem;
+  color: #ffffff;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+
+footer {
+  background-color: #1f1f1f;
+  text-align: center;
+  padding: 1rem;
+  color: #666;
 }
