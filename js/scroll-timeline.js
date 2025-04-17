@@ -4,6 +4,8 @@ export default class ScrollTimeLine {
 		this.scrollPos = 0;
 		this.lastScroll = 0;
 		this.touchStartY = 0;
+		this.scrollProgress = 0;
+		this.smoothFactor = 0.05;
 
 		this.scrollPositionCallback = null;
 	}
@@ -20,7 +22,7 @@ export default class ScrollTimeLine {
 		) return;
 
 		eventTrigger.addEventListener('wheel', event => {
-			this.#handleScrollDelta(event.deltaY);
+			this.#handleScrollDelta(event.deltaY * 1);
 		});
 
 		eventTrigger.addEventListener("touchstart", event => {
@@ -31,7 +33,7 @@ export default class ScrollTimeLine {
 			let deltaY = this.touchStartY - event.touches[0].clientY;
 			this.touchStartY = event.touches[0].clientY;
 
-			this.#handleScrollDelta(deltaY);
+			this.#handleScrollDelta(deltaY * 5);
 		});
 
 		eventTrigger.addEventListener("keydown", event => {
@@ -43,7 +45,7 @@ export default class ScrollTimeLine {
 				PageDown: 400,
 				PageUp: -400,
 				Home: -this.scrollHeight,
-				End: this.scrollHeight,
+				End: this.scrollHeight
 			};
 
 			if (deltaMap[event.key]) {
@@ -54,9 +56,8 @@ export default class ScrollTimeLine {
 	}
 
 	update () {
-		this.lastScroll += (this.scrollPos - this.lastScroll) * 0.1;
-		const scrollProgress = this.lastScroll / this.scrollHeight;
+		this.lastScroll += (this.scrollPos - this.lastScroll) * this.smoothFactor;
 
-		if (this.scrollPositionCallback instanceof Function) this.scrollPositionCallback(scrollProgress);
+		this.scrollProgress = this.lastScroll / this.scrollHeight;
 	}
 }
