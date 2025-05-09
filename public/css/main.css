@@ -50,10 +50,6 @@
 
 html {
 	font-size: 18px;
-	overflow-x: hidden;
-	overflow-y: auto;
-	scrollbar-width: thin;
-	scrollbar-color: var(--scrollbar-color) transparent;
 }
 
 html::selection {
@@ -69,17 +65,31 @@ html, body {
 
 body {
 	background-color: var(--background-color);
+	overflow: hidden;
 }
 
 #main-container {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color:transparent;
+	overflow-x: hidden;
+	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: var(--scrollbar-color) transparent;
+}
+
+#main-container > div {
 	position: relative;
 	margin-inline: auto;
 	top: 0;
 	left: 0;
 	right: 0;
 	width: 100%;
+	height: fit-content;
 	max-width: 1500px;
-	background-color:transparent;
 }
 
 section {
@@ -410,4 +420,48 @@ footer {
 	font-size: 0.8rem;
 	color: var(--footer-text-color);
 	font-family: verdana;
+}
+
+#chat-cont {
+	position: fixed;
+	padding-inline: 2rem;
+	padding-block: 1rem;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--background-color);
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	transition: transform 0.2s linear;
+}
+
+#chat-cont.hide {
+	transform: translateY(100%);
+}
+
+#chat-content, #chat-controls {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: red;
+}
+
+#chat-content {
+	flex-grow: 1;
+}
+
+#chat-controls {
+	height: 2rem;
+}
+
+#chat-close-btn {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	width: 2rem;
+	height: 2rem;
+	background-color: green;
 }
