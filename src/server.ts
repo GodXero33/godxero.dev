@@ -1,8 +1,11 @@
 import express, { Request, Response } from 'express';
 import path from 'path';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
-const port = 5500;
+const port = process.env.PORT || 5500;
 
 app.use(express.static(path.join(__dirname, '../public')));
 
