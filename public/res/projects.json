@@ -1,0 +1,98 @@
+[
+	{
+		"title": "EpicEats",
+		"contents": [
+			"A food ordering and restaurant management system with table booking, order tracking, and staff management. Built using Angular (frontend) and Spring Boot (backend), with MySQL for structured data handling."
+		],
+		"tech": [
+			"Angular",
+			"Spring Boot",
+			"MySQL"
+		],
+		"repo": "https://github.com/GodXero33/EpicEats"
+	},
+	{
+		"title": "iCET EVO Planing Project",
+		"contents": [
+			"Worked on a mid-scale system as part of our course at iCET. I was assigned as the PMK for our feature. While I didn’t fully dive into the depths of the PM role, I got a top-level view and a feel for how planning and coordination works. Our lecturer guided me through most of it, so I wasn't alone in the process."
+		],
+		"tech": [
+			"Angular",
+			"Spring Boot",
+			"MySQL"
+		],
+		"repo": "https://github.com/iCET-Computer-Engineering-Technology/EVO-Backend"
+	},
+	{
+		"title": "LynxViz.JS",
+		"contents": [
+			"A handcrafted JavaScript animation library offering fine-grained control over animations. Includes built-in math and geometry utilities to make programmatic animations easier and more precise."
+		],
+		"tech": [
+			"Vanilla JS"
+		],
+		"repo": "https://github.com/GodXero33/LynxViz.js"
+	},
+	{
+		"title": "ClothifyStore",
+		"contents": [
+			"A desktop app for managing clothing store operations, built with JavaFX. Includes inventory tracking, report generation using JasperReports, user-defined storage paths, and full config control via local files."
+		],
+		"tech": [
+			"Java",
+			"JavaFX",
+			"MySQL",
+			"JasperReports"
+		],
+		"repo": "https://github.com/GodXero33/ClothifyStore"
+	},
+	{
+		"title": "ChessAdvanced-WebSocket",
+		"contents": [
+			"A minimalist online chess game where two players can compete in real-time using WebSockets. Built entirely with raw JavaScript—no frameworks, just logic."
+		],
+		"tech": [
+			"Node.js",
+			"WebSockets",
+			"HTML/CSS/JS"
+		],
+		"repo": "https://github.com/GodXero33/ChessAdvanced-WebSocket"
+	},
+	{
+		"title": "HuntFlow",
+		"contents": [
+			"A top-down 2D survival game where players explore an open world, collect resources, and race against time to meet their objectives. Solo mode now—multiplayer's cooking for the future.",
+			"Status: Ongoing"
+		],
+		"tech": [
+			"Node.js",
+			"WebSockets",
+			"HTML/CSS/JS"
+		],
+		"repo": "https://github.com/GodXero33/HuntFlow"
+	},
+	{
+		"title": "Arduino WebSocket Bridge",
+		"contents": [
+			"A hands-on IoT practice project connecting Arduino to the web using WebSockets. Control hardware like LEDs remotely in real-time, and learn the magic of software-hardware synergy."
+		],
+		"tech": [
+			"Node.js",
+			"WebSockets",
+			"HTML/CSS/JS"
+		],
+		"repo": "https://github.com/GodXero33/arduino-websocket-bridge"
+	},
+	{
+		"title": "Mos Burgers – POS System",
+		"contents": [
+			"A full-stack Point of Sale system built for a burger shop. Handles everything from order taking to backend processing."
+		],
+		"tech": [
+			"Java",
+			"Spring Boot",
+			"HTML/CSS/JS"
+		],
+		"repo": "https://github.com/GodXero33/arduino-websocket-bridge"
+	}
+]
