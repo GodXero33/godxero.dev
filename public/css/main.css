@@ -1,16 +1,64 @@
 :root {
-	--background-color: #000000;
+	--background-color: #ffffff;
+	--scrollbar-color: #000000;
+	--header-bg-color-1: #ffffff;
+	--header-bg-color-2: #000000;
+	--header-text-color-1: #000000;
+	--header-text-color-2: #ffffff;
+	--content-bg-color-1: #efefef;
+	--content-text-color-1: #000000;
+	--footer-bg-color: #000000;
+	--footer-text-color: #ffffff;
+	--github-url: url(../res/img/github-mark.png);
+	--yt-url: url(../res/img/youtube.png);
+	--twitter-url: url(../res/img/twitter.png);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background-color: #000000;
+		--scrollbar-color: #ffffff;
+		--header-bg-color-1: #000000;
+		--header-bg-color-2: #ffffff;
+		--header-text-color-1: #ffffff;
+		--header-text-color-2: #000000;
+		--content-bg-color-1: #2f2f2f;
+		--content-text-color-1: #ffffff;
+		--footer-bg-color: #ffffff;
+		--footer-text-color: #000000;
+		--github-url: url(../res/img/github-mark-white.png);
+		--yt-url: url(../res/img/youtube-white.png);
+		--twitter-url: url(../res/img/twitter-white.png);
+	}
+}
+
+@font-face {
+	font-family: chunk;
+	src: url(../res/font/Chunk.ttf);
+}
+
+@font-face {
+	font-family: verdana;
+	src: url(../res/font/verdana.ttf);
 }
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	user-select: none;
 }
 
 html {
 	font-size: 18px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: var(--scrollbar-color) transparent;
+}
+
+html::selection {
+	color: #000000;
+	background-color: #ff76ff;
 }
 
 html, body {
@@ -30,7 +78,336 @@ body {
 	left: 0;
 	right: 0;
 	width: 100%;
-	height: 100%;
-	max-width: 900px;
+	max-width: 1500px;
 	background-color:transparent;
+}
+
+section {
+	position: relative;
+	padding-inline: 0.8rem;
+	padding-top: 0.8rem;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: fit-content;
+}
+
+section.fs {
+	min-height: 100svh;
+}
+
+#hero-section {
+	margin-top: 2rem;
+	margin-bottom: 4rem;
+}
+
+#hero-section h1 {
+	margin-bottom: 1rem;
+	width: fit-content;
+	font-size: clamp(2.5rem, 5vw, 4.5rem);
+	color: var(--header-text-color-1);
+	font-family: chunk;
+	font-weight: 100;
+}
+
+#hero-section h2 {
+	width: fit-content;
+	font-size: clamp(1rem, 2vw, 2.5rem);
+	color: var(--header-text-color-1);
+	font-family: chunk;
+	font-weight: 100;
+}
+
+#hero-section > div > div:first-child {
+	position: absolute;
+	top: 0.8rem;
+	left: 0.8rem;
+	clip-path: circle(60% at 0% 50%);
+}
+
+#hero-section > div > div:first-child h1 {
+	background-color: var(--header-bg-color-2);
+	color: var(--header-text-color-2);
+}
+
+.section-title {
+	position: relative;
+	margin-bottom: 1rem;
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.section-title div:first-child {
+	position: relative;
+	padding-right: 1rem;
+	width: fit-content;
+	font-size: clamp(1.5rem, 4vw, 2rem);
+	font-family: italiana;
+	color: var(--header-text-color-1);
+	font-weight: 900;
+}
+
+.section-title div:last-child {
+	flex-grow: 1;
+	height: 0.1rem;
+	background-color: var(--header-text-color-1);
+}
+
+#intro-section {
+	margin-bottom: 4rem;
+}
+
+#intro-section .section-content {
+	--card-min-width: 100px;
+	--card-max-width: 400px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(clamp(var(--card-min-width), 100%, var(--card-max-width)), 1fr));
+	gap: 1rem;
+	justify-items: center;
+}
+
+#intro-section .section-content > div {
+	position: relative;
+	padding: 1rem;
+	width: 100%;
+	background-color: var(--content-bg-color-1);
+	font-size: 1rem;
+	font-family: verdana;
+	color: var(--content-text-color-1);
+	font-weight: 200;
+	word-spacing: 0.3rem;
+}
+
+#skills-section {
+	margin-bottom: 4rem;
+}
+
+#skills-section .section-content {
+	position: relative;
+	padding: 1rem;
+	width: 100%;
+	background-color: var(--content-bg-color-1);
+}
+
+#skills-section .section-content ul {
+	padding-left: 0.5rem;
+	font-size: 1rem;
+	font-family: verdana;
+	color: var(--content-text-color-1);
+	font-weight: 200;
+	word-spacing: 0.3rem;
+	list-style-type: none;
+}
+
+#skills-section .section-content ul li {
+	padding-block: 0.2rem;
+}
+
+#skills-section .section-content ul b {
+	font-weight: 900;
+}
+
+#projects-section {
+	margin-bottom: 4rem;
+}
+
+#project-cards-container {
+	--card-min-width: 100px;
+	--card-max-width: 250px;
+	position: relative;
+	padding-top: 1rem;
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(clamp(var(--card-min-width), 100%, var(--card-max-width)), 1fr));
+	overflow-x: hidden;
+	gap: 1rem;
+}
+
+#project-cards-container .card {
+	position: relative;
+	padding: 0.8rem;
+	padding-bottom: 2.8rem;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: auto;
+	background-color: var(--content-bg-color-1);
+	overflow: hidden;
+}
+
+#project-cards-container .card .title {
+	margin-bottom: 1.2rem;
+	font-family: verdana;
+	font-size: 1.2rem;
+	font-weight: 700;
+	color: var(--header-text-color-1);
+}
+
+#project-cards-container .card .content {
+	padding-bottom: 1.8rem;
+	font-family: verdana;
+	font-size: 0.9rem;
+	font-weight: 200;
+	color: var(--header-text-color-1);
+	word-spacing: 0.3rem;
+}
+
+#project-cards-container .card .tech {
+	position: relative;
+	padding: 0.5rem;
+	background-color: var(--header-bg-color-2);
+	font-family: verdana;
+	font-size: 0.9rem;
+	font-weight: 500;
+	color: var(--header-text-color-2);
+}
+
+#project-cards-container .card .tech::after {
+	content: 'Tech';
+	position: absolute;
+	padding: 0.3rem;
+	top: -1.2rem;
+	left: -0.5rem;
+	background-color: var(--header-bg-color-1);
+	font-size: 1rem;
+	color: var(--header-text-color-1);
+}
+
+#project-cards-container .card .repo {
+	position: absolute;
+	margin-left: auto;
+	bottom: 0.5rem;
+	right: 0.5rem;
+	margin-top: 0.3rem;
+	width: fit-content;
+}
+
+#project-cards-container .card .repo .img {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 2rem;
+	height: 2rem;
+	background-image: var(--github-url);
+	background-position: center center;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#hobbies-section {
+	margin-bottom: 4rem;
+}
+
+#hobbies-section .section-content {
+	position: relative;
+	padding: 1rem;
+	width: 100%;
+	background-color: var(--content-bg-color-1);
+	font-size: 1rem;
+	font-family: verdana;
+	color: var(--content-text-color-1);
+	font-weight: 200;
+	word-spacing: 0.3rem;
+}
+
+#hobbies-section .section-content a {
+	color: var(--header-text-color-1);
+}
+
+#contact-section {
+	margin-bottom: 4rem;
+}
+
+#contact-section .icons-cont {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: fit-content;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+#contact-section .icons-cont .icon {
+	position: relative;
+	margin-inline: 1rem;
+	margin-top: 0.8rem;
+	width: fit-content;
+	height: fit-content;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+#contact-section .icons-cont .icon div:first-child {
+	width: 2rem;
+	height: 2rem;
+	background-position: center center;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#contact-section .icons-cont .icon div:first-child.github {
+	background-image: var(--github-url);
+}
+
+#contact-section .icons-cont .icon div:first-child.yt {
+	background-image: var(--yt-url);
+}
+
+#contact-section .icons-cont .icon div:first-child.twitter {
+	background-image: var(--twitter-url);
+}
+
+#contact-section .icons-cont .icon div:nth-child(2) {
+	font-size: 1rem;
+	font-family: verdana;
+	color: var(--content-text-color-1);
+	font-weight: 200;
+}
+
+#contact-section .icons-cont .icon a {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#direct-message-btn-cont {
+	position: relative;
+	margin-top: 2rem;
+	display: flex;
+	justify-content: center;
+}
+
+#direct-message-btn {
+	position: relative;
+	padding: 1rem;
+	top: 0;
+	left: 0;
+	background-color: var(--header-bg-color-2);
+	font-size: 1rem;
+	font-family: verdana;
+	color: var(--header-text-color-2);
+	font-weight: 200;
+	cursor: pointer;
+}
+
+footer {
+	position: relative;
+	padding: 2rem;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: var(--footer-bg-color);
+	font-size: 0.8rem;
+	color: var(--footer-text-color);
+	font-family: verdana;
 }
