@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content">
 		<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/chat.css">
 		<script type="module" src="js/sketch.js" defer></script>
 		<script type="module" src="js/chat.js" defer></script>
 	</head>
@@ -103,9 +104,16 @@
 				<footer>Made by GodXero</footer>
 			</div>
 		</main>
-		<div id="chat-cont" class="hide">
+		<div id="chat-cont" class="">
 			<div id="chat-content"></div>
 			<div id="chat-controls"></div>
+			<div id="new-chat-start-form" class="hide">
+				<div>
+					<h1>Your name?</h1>
+					<input type="text" autocomplete="off" spellcheck="false" id="new-chat-form-name" placeholder="Your name">
+					<button id="new-chat-name-confirm-btn">Start Chat</button>
+				</div>
+			</div>
 			<div id="chat-close-btn"></div>
 		</div>
 	</body>

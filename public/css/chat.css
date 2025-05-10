@@ -1,0 +1,154 @@
+#chat-cont {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--header-bg-color-1);
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	transition: transform 0.2s linear;
+}
+
+#chat-cont.hide {
+	transform: translateY(100%);
+}
+
+#chat-content, #chat-controls {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+#chat-content {
+	flex-grow: 1;
+	padding: 2.6rem 2.5rem 2rem 2rem;
+	overflow-x: hidden;
+	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: var(--scrollbar-color) transparent;
+	background-color: var(--content-bg-color-1);
+}
+
+#chat-controls {
+	padding: 0.5rem;
+	height: 2rem;
+}
+
+#chat-close-btn {
+	position: absolute;
+	top: 0.6rem;
+	right: 0.6rem;
+	width: 2rem;
+	height: 2rem;
+	cursor: pointer;
+	background-image: var(--close-url);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 80% 80%;
+}
+
+#chat-content .chat-box {
+	position: relative;
+	margin-block: 0.5rem;
+	padding-inline: 0.6rem;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: fit-content;
+	max-width: 500px;
+	background-color: var(--header-bg-color-2);
+	font-family: verdana;
+	color: var(--header-text-color-2);
+	font-size: 1rem;
+}
+
+#chat-content .chat-box.client {
+	margin-left: auto;
+	right: 0;
+	background-color: var(--header-bg-color-1);
+	color: var(--header-text-color-1);
+}
+
+#chat-content .chat-box .time {
+	position: absolute;
+	padding-inline: 0.5rem;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 1rem;
+	font-size: 0.6rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 0.2rem;
+}
+
+#chat-content .chat-box .msg {
+	padding: 0.3rem;
+	padding-top: 1.2rem;
+}
+
+#chat-content .chat-box .sender {
+	padding: 0.2rem;
+	font-size: 0.7rem;
+}
+
+#new-chat-start-form {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--header-bg-color-1);
+	display: grid;
+	place-items: center;
+}
+
+#new-chat-start-form.hide {
+	opacity: 0;
+	pointer-events: none;
+}
+
+#new-chat-start-form > div {
+	position: relative;
+	padding: 1rem;
+	top: 0;
+	left: 0;
+	width: fit-content;
+	height: fit-content;
+	min-width: 200px;
+	min-height: 200px;
+	max-width: 400px;
+	max-height: 300px;
+	background-color: var(--header-bg-color-2);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: var(--header-text-color-2);
+}
+
+#new-chat-start-form > div h1 {
+	font-size: clamp(1.5rem, 5vw, 2.2rem);
+	padding-bottom: 1rem;
+	font-weight: 900;
+	font-family: verdana;
+}
+
+#new-chat-start-form > div input {
+	display: block;
+	margin-bottom: 1rem;
+}
+
+#new-chat-start-form > div input, #new-chat-start-form > div button {
+	padding: 0.6rem;
+	font-weight: 500;
+	font-size: 1rem;
+	font-family: verdana;
+}
+
+#new-chat-start-form > div button {
+	cursor: pointer;
+}
