@@ -13,6 +13,7 @@
 	--yt-url: url(../res/img/youtube.png);
 	--twitter-url: url(../res/img/twitter.png);
 	--close-url: url(../res/img/close.png);
+	--rocket-url: url(../res/img/rocket.png);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,6 +32,7 @@
 		--yt-url: url(../res/img/youtube-white.png);
 		--twitter-url: url(../res/img/twitter-white.png);
 		--close-url: url(../res/img/close-white.png);
+		--rocket-url: url(../res/img/rocket-white.png);
 	}
 }
 

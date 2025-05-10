@@ -3,8 +3,11 @@ const chatContent = document.getElementById('chat-content');
 const newChatForm = document.getElementById('new-chat-start-form');
 const newChatFormName = document.getElementById('new-chat-form-name');
 const newChatFormConfirmBtn = document.getElementById('new-chat-name-confirm-btn');
+const chatMessageInput = document.getElementById('chat-message-input');
+const chatMessageSendBtn = document.getElementById('chat-message-send-btn');
 
 let newChatOpenConfirmBtnListener = null;
+let clientName = null;
 
 function getUUID () {
 	let uuid = localStorage.getItem('xero-chat-uuid');
@@ -32,33 +35,56 @@ function openNewChatForm () {
 	});
 }
 
+function startChat () {
+	chatMessageSendBtn.addEventListener('click', () => {
+		if (ws && ws.readyState === WebSocket.OPEN) {
+			ws.send(JSON.stringify({
+				type: 'msg',
+				msg: chatMessageInput.value
+			}));
+
+			const message = {
+				message: chatMessageInput.value,
+				time: new Date().toString()
+			};
+
+			chatContent.innerHTML += getChatBox(message, clientName);
+			chatMessageInput.value = '';
+		}
+	});
+}
+
 function connectToChatServer () {
 	ws = new WebSocket(`${location.protocol === 'https:' ? 'wss:' : 'ws:'}//${location.host}?uuid=${getUUID()}`);
 
 	ws.onmessage = (event) => {
 		const msg = JSON.parse(event.data);
-		console.log(msg);
 
 		if (msg.type === 'load-chat') {
 			loadClientChat(msg.chat);
+			startChat();
+
+			clientName = msg.chat.client;
 		} else if (msg.type === 'new-chat') {
 			openNewChatForm().then((name) => {
 				ws.send(JSON.stringify({
 					type: 'new-chat',
 					name
 				}));
+
+				clientName = name;
 			});
 		} else if (msg.type === 'start-chat') {
-			console.log('start');
+			startChat();
 		}
 	};
 
 	ws.onopen = () => {
-		console.log('Connected to server');
+		// console.log('Connected to server');
 	};
 
 	ws.onclose = () => {
-		console.log('Disconnected from server');
+		// console.log('Disconnected from server');
 	};
 }
 
@@ -98,7 +124,7 @@ function getChatBox (message, sender = null) {
 	</div>`;
 }
 
-async function loadClientChat (chat) {
+function loadClientChat (chat) {
 	chatContent.innerHTML = '';
 
 	const messages = chat.chat.sort((a, b) => new Date(a.time) - new Date(b.time));

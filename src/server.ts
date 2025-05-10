@@ -49,6 +49,8 @@ app.use('/admin', (req: Request, res: Response, next: NextFunction) => {
 	}
 }, express.static(path.join(__dirname, '../admin')));
 
+const clientIDsMap = new Map();
+
 wss.on('connection', (ws: WebSocket, req: IncomingMessage) => {
 	const query = parse(req.url || '', true).query;
 	const deviceId = query.uuid as string;
@@ -61,6 +63,8 @@ wss.on('connection', (ws: WebSocket, req: IncomingMessage) => {
 				type: 'load-chat',
 				chat: chatData
 			}));
+
+			clientIDsMap.set(deviceId, chatData.clientId);
 		} else {
 			ws.send(JSON.stringify({
 				type: 'new-chat'
@@ -73,11 +77,15 @@ wss.on('connection', (ws: WebSocket, req: IncomingMessage) => {
 		console.log('Received:', msg);
 
 		if (msg.type === 'new-chat') {
-			addNewClient(msg.name, deviceId).then(() => {
+			addNewClient(msg.name, deviceId).then((insertId) => {
 				ws.send(JSON.stringify({
 					type: 'start-chat'
 				}));
+
+				clientIDsMap.set(deviceId, insertId);
 			}).catch((error) => console.error(error));
+		} else if (msg.type === 'msg') {
+			saveMessageToDatabase(msg.msg, clientIDsMap.get(deviceId), true);
 		}
 	});
 
@@ -158,6 +166,7 @@ function loadChatForDevice (deviceId: string): Promise<any> {
 		}
 
 		resolve({
+			clientId: client.id,
 			client: client.name,
 			chat
 		});
@@ -177,7 +186,20 @@ function addNewClient (name: string, deviceId: string) {
 			const insertId = (result as mysql.ResultSetHeader).insertId;
 
 			console.log(`New client added with ID: ${insertId}`);
-			resolve(null);
+			resolve(insertId);
 		});
+	});
+}
+
+
+function saveMessageToDatabase (msg: string, clientId: number, fromClient: boolean) {
+	const queryInsertChat = 'INSERT INTO chat (client, message, from_client) VALUES (?, ?, ?)';
+
+	dbConnection.query(queryInsertChat, [clientId, msg, fromClient ? 1 : 0], (err, result) => {
+		if (err) {
+			console.error('Error saving message to database:', err.message);
+		} else {
+			console.log(`Message saved: "${msg}" fromClient: ${fromClient}`);
+		}
 	});
 }

@@ -20,6 +20,9 @@
 	top: 0;
 	left: 0;
 	width: 100%;
+	margin-inline: auto;
+	right: 0;
+	max-width: 980px;
 }
 
 #chat-content {
@@ -30,11 +33,6 @@
 	scrollbar-width: thin;
 	scrollbar-color: var(--scrollbar-color) transparent;
 	background-color: var(--content-bg-color-1);
-}
-
-#chat-controls {
-	padding: 0.5rem;
-	height: 2rem;
 }
 
 #chat-close-btn {
@@ -150,5 +148,49 @@
 }
 
 #new-chat-start-form > div button {
+	cursor: pointer;
+}
+
+#chat-controls > div {
+	position: relative;
+	padding-bottom: 0.4rem;
+	padding-inline: 0.5rem;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: fit-content;
+	display: flex;
+	gap: 0.6rem;
+}
+
+#chat-message-input {
+	display: block;
+	position: relative;
+	padding: 0.5rem;
+	top: 0;
+	left: 0;
+	height: 2.1rem;
+	flex-grow: 1;
+	background-color: var(--header-bg-color-1);
+	color: var(--header-text-color-1);
+	border: 2px solid hsla(from var(--header-text-color-1) h s l / 0.2);
+	border-bottom: 2px solid var(--header-text-color-1);
+	font-family: verdana;
+	font-size: 1rem;
+}
+
+#chat-message-send-btn {
+	position: relative;
+	top: 0;
+	left: 0;
+	height: 2.1rem;
+	aspect-ratio: 2 / 1;
+	background-color: var(--header-text-color-2);
+	outline: none;
+	border: 2px solid var(--header-text-color-1);
+	background-image: var(--rocket-url);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: auto 80%;
 	cursor: pointer;
 }
