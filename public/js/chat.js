@@ -7,6 +7,7 @@ const chatMessageInput = document.getElementById('chat-message-input');
 const chatMessageSendBtn = document.getElementById('chat-message-send-btn');
 
 let newChatOpenConfirmBtnListener = null;
+let newChatStartListener = null;
 let clientName = null;
 
 function getUUID () {
@@ -21,23 +22,28 @@ function getUUID () {
 }
 
 function openNewChatForm () {
-	return new Promise((resolve) => {
-		newChatForm.classList.remove('hide');
+	newChatForm.classList.remove('hide');
 
-		newChatOpenConfirmBtnListener = () => {
-			const name = newChatFormName.value;
+	newChatOpenConfirmBtnListener = () => {
+		const name = newChatFormName.value;
 
-			newChatForm.classList.add('hide');
-			resolve(name);
-		};
+		newChatForm.classList.add('hide');
+		
+		ws.send(JSON.stringify({
+			type: 'new-chat',
+			name
+		}));
 
-		newChatFormConfirmBtn.addEventListener('click', newChatOpenConfirmBtnListener);
-	});
+		clientName = name;
+	};
+
+	newChatFormConfirmBtn.removeEventListener('click', newChatOpenConfirmBtnListener);
+	newChatFormConfirmBtn.addEventListener('click', newChatOpenConfirmBtnListener);
 }
 
 function startChat () {
-	chatMessageSendBtn.addEventListener('click', () => {
-		if (ws && ws.readyState === WebSocket.OPEN) {
+	newChatStartListener = () => {
+		if (chatMessageInput.value !== '' && ws && ws.readyState === WebSocket.OPEN) {
 			ws.send(JSON.stringify({
 				type: 'msg',
 				msg: chatMessageInput.value
@@ -50,8 +56,12 @@ function startChat () {
 
 			chatContent.innerHTML += getChatBox(message, clientName);
 			chatMessageInput.value = '';
+			chatContent.scrollTop = chatContent.scrollHeight;
 		}
-	});
+	};
+
+	chatMessageSendBtn.removeEventListener('click', newChatStartListener);
+	chatMessageSendBtn.addEventListener('click', newChatStartListener);
 }
 
 function connectToChatServer () {
@@ -66,14 +76,7 @@ function connectToChatServer () {
 
 			clientName = msg.chat.client;
 		} else if (msg.type === 'new-chat') {
-			openNewChatForm().then((name) => {
-				ws.send(JSON.stringify({
-					type: 'new-chat',
-					name
-				}));
-
-				clientName = name;
-			});
+			openNewChatForm();
 		} else if (msg.type === 'start-chat') {
 			startChat();
 		}
@@ -132,6 +135,8 @@ function loadClientChat (chat) {
 	messages.forEach(message => {
 		chatContent.innerHTML += getChatBox(message, message.fromClient === 1 ? chat.client : null);
 	});
+
+	chatContent.scrollTop = chatContent.scrollHeight;
 }
 
 document.getElementById('direct-message-btn').addEventListener('click', () => {
@@ -140,6 +145,9 @@ document.getElementById('direct-message-btn').addEventListener('click', () => {
 
 document.getElementById('chat-close-btn').addEventListener('click', () => {
 	disconnectFromChatServer();
+
+	newChatFormConfirmBtn.removeEventListener('click', newChatOpenConfirmBtnListener);
+	chatMessageSendBtn.removeEventListener('click', newChatStartListener);
 });
 
 connectToChatServer();
