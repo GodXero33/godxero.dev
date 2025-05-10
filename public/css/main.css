@@ -12,6 +12,8 @@
 	--github-url: url(../res/img/github-mark.png);
 	--yt-url: url(../res/img/youtube.png);
 	--twitter-url: url(../res/img/twitter.png);
+	--close-url: url(../res/img/close.png);
+	--rocket-url: url(../res/img/rocket.png);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -29,6 +31,8 @@
 		--github-url: url(../res/img/github-mark-white.png);
 		--yt-url: url(../res/img/youtube-white.png);
 		--twitter-url: url(../res/img/twitter-white.png);
+		--close-url: url(../res/img/close-white.png);
+		--rocket-url: url(../res/img/rocket-white.png);
 	}
 }
 
@@ -50,10 +54,6 @@
 
 html {
 	font-size: 18px;
-	overflow-x: hidden;
-	overflow-y: auto;
-	scrollbar-width: thin;
-	scrollbar-color: var(--scrollbar-color) transparent;
 }
 
 html::selection {
@@ -69,17 +69,31 @@ html, body {
 
 body {
 	background-color: var(--background-color);
+	overflow: hidden;
 }
 
 #main-container {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color:transparent;
+	overflow-x: hidden;
+	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: var(--scrollbar-color) transparent;
+}
+
+#main-container > div {
 	position: relative;
 	margin-inline: auto;
 	top: 0;
 	left: 0;
 	right: 0;
 	width: 100%;
+	height: fit-content;
 	max-width: 1500px;
-	background-color:transparent;
 }
 
 section {

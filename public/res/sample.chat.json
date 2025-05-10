@@ -1,0 +1,47 @@
+{
+	"client": "Jordan Lee",
+	"messages": [
+		{
+			"sender": 1,
+			"message": "Hi, I found your portfolio site. Are you available for freelance work?",
+			"time": "10:12 AM",
+			"date": "2025-05-09"
+		},
+		{
+			"sender": 0,
+			"message": "Hey! Yes, I'm available. What kind of project do you have in mind?",
+			"time": "10:13 AM",
+			"date": "2025-05-09"
+		},
+		{
+			"sender": 1,
+			"message": "I'm looking to build a simple landing page for my product.",
+			"time": "10:14 AM",
+			"date": "2025-05-09"
+		},
+		{
+			"sender": 0,
+			"message": "Nice! Do you already have a design or should I help with that too?",
+			"time": "10:15 AM",
+			"date": "2025-05-09"
+		},
+		{
+			"sender": 1,
+			"message": "A little of both, I have a rough wireframe. Can you polish it?",
+			"time": "10:16 AM",
+			"date": "2025-05-09"
+		},
+		{
+			"sender": 0,
+			"message": "Absolutely. I’ll also optimize it for mobile. Want animations or just static design?",
+			"time": "10:17 AM",
+			"date": "2025-05-09"
+		},
+		{
+			"sender": 1,
+			"message": "Subtle animations would be great!",
+			"time": "10:18 AM",
+			"date": "2025-05-09"
+		}
+	]
+}

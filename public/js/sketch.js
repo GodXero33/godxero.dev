@@ -19,3 +19,13 @@ async function loadProjects () {
 }
 
 loadProjects();
+
+const chatCont = document.getElementById('chat-cont');
+
+document.getElementById('direct-message-btn').addEventListener('click', () => {
+	chatCont.classList.remove('hide');
+});
+
+document.getElementById('chat-close-btn').addEventListener('click', () => {
+	chatCont.classList.add('hide');
+});
